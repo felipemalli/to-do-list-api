@@ -1,9 +1,11 @@
-import express, { Application, Request, Response, NextFunction } from 'express';
+// import express, { Application, Request, Response, NextFunction } from 'express';
 
-const app: Application = express();
+// const app: Application = express();
 
-app.get('/', (req: Request, res: Response, next: NextFunction, ) => {
-  res.send('Hello');
-})
+// const miniDatabase = [{ name: 'Roberto', age: 26}, { name: 'Luciana', age: 56 }]
 
-app.listen(5000, () => console.log('Server runnning'))
+// app.get('/', (req: Request, res: Response, next: NextFunction, ) => {
+//   res.send(miniDatabase);
+// })
+
+// app.listen(5000, () => console.log('Server runnning'))
