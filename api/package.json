@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --ignore-watch node_modules src/server.ts",
-    "build": "tsc -p .",
+    "build": "npx -y tsc",
     "test": "jest"
   },
   "author": "felipe-vahia-malliagros",
