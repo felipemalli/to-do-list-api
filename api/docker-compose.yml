@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  app:
+    container_name: express-container
+    restart: always
+    build: .
+    ports:
+      - "4000:5000"                    # docker_host_port : docker_container _port
+    depends_on:
+      - mysql
+  mysql:
+    container_name: mysql_container
+    image: mysql:8.0.21
+    ports:
+      - 3302:3306                     # docker_host_port : docker_container _port
+    expose:
+      - "3302"
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+    volumes:
+      - './mysqlDB:/var/lib/mysql'
+volumes:
+  mysqlDB:                            # you can specify a folder to store here, like C:\users\...  # if empty, it will use primary hardrive that docker is using.
