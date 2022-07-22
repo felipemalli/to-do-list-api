@@ -2,28 +2,42 @@ version: '3.9'
 services:
   app:
     container_name: backend_container
-    restart: always
+    restart: on-failure
     build: .
     ports:
-      - "4000:5000"                    # docker_host_port : docker_container _port
+      - "4000:4000"                   # docker_host_port : docker_container _port
     depends_on:
       - mysql
     environment:
-      - PORT=5000                     # data_container_port
-      - DB_USER=root                  # data below references container `mysql`
-      - DB_PASS=admin
+      - PORT=${PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=mysql
-      - DB_NAME=mysql_api
-      - DB_PORT=3306
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - DATABASE_URL=mysql://root:${DB_PASSWORD}@mysql:${DB_PORT}/${DB_NAME}
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:4000"]
+      timeout: 10s
+      retries: 5
   mysql:
     container_name: mysql_container
+    restart: 'always'
     image: mysql:8.0.21
     ports:
-      - 3302:3306                     # docker_host_port : docker_container _port
+      - 3306:${DB_PORT}               # docker_host_port : docker_container _port
     expose:
-      - "3302"
+      - "3306"                        # docker_host_port
     environment:
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
       - MYSQL_ROOT_PASSWORD=admin
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
     volumes:
       - './mysqlDB:/var/lib/mysql'
 volumes:
