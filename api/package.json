@@ -6,6 +6,10 @@
   "scripts": {
     "compose:up": "docker-compose up -d --build",
     "compose:down": "docker-compose down --remove-orphans",
+    "compose:up:recreate": "docker-compose up -d --build --force-recreate",
+    "compose:down:recreate": "docker-compose down --remove-orphans -v",
+    "compose:up:dev": "docker-compose -f docker-compose.dev.yml up -d --build",
+    "compose:down:dev": "docker-compose -f docker-compose.dev.yml down --remove-orphans",
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --ignore-watch node_modules src/server.ts",
     "build": "tsc",
