@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "compose:up": "docker-compose up -d --build",
+    "compose:down": "docker-compose down --remove-orphans",
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --ignore-watch node_modules src/server.ts",
-    "build": "npx -y tsc",
+    "build": "tsc",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
