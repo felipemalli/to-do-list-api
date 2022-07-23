@@ -1,5 +1,5 @@
 import express, {
-  Application, NextFunction, Request, Response,
+  Application, NextFunction, Request, Response
 } from 'express';
 
 const app: Application = express();
@@ -10,4 +10,5 @@ app.get('/', (_req: Request, res: Response, _next: NextFunction) => {
   res.send(miniDatabase);
 });
 
-app.listen(5000, () => console.log('Server running at port 5000'));
+app.listen(4000, () => console.log('Server running at port 4000'));
+console.log('teste');

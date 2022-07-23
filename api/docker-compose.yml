@@ -1,15 +1,19 @@
 version: '3.9'
 services:
-  app:
+  node:
     container_name: backend_container
-    restart: on-failure
-    build: .
+    restart: 'always'
+    build: 
+      context: .
+      target: production
     ports:
       - "4000:4000"
     depends_on:
       - mysql
+    tty: true
+    stdin_open: true
     environment:
-      - PORT=${PORT}
+      - PORT=4000
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=mysql
@@ -20,6 +24,8 @@ services:
       test: ["CMD", "lsof", "-t", "-i:4000"]
       timeout: 10s
       retries: 5
+    volumes:
+      - './src:/app/src'
   mysql:
     container_name: mysql_container
     restart: 'always'
@@ -36,7 +42,5 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
       retries: 5
-#     volumes:
-#       - './mysqlDB:/var/lib/mysql'
-# volumes:
-#   mysqlDB:                            # you can specify a folder to store here, like C:\users\...  # if empty, it will use primary hardrive that docker is using.
+    # volumes:
+    #   - './mysqlDB:/var/lib/mysql'
