@@ -12,7 +12,7 @@
     "compose:down:dev": "docker-compose -f docker-compose.dev.yml down --remove-orphans",
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --ignore-watch node_modules src/server.ts",
-    "build": "tsc",
+    "build": "rimraf dist && tsc",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
@@ -36,6 +36,7 @@
     "jest": "^28.1.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.16",
+    "rimraf": "^3.0.2",
     "sequelize-cli": "^6.4.1",
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.1",

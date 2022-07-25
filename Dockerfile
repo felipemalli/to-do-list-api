@@ -10,8 +10,8 @@ FROM development AS builder
 RUN npm run build
 
 FROM builder AS production
-ENV NODE_ENV production
-ENV PORT ${PORT}
+# ENV NODE_ENV production
+# ENV PORT ${PORT}
 CMD ["npm", "start"]
 
 # CMD node /app/dist/index.js
