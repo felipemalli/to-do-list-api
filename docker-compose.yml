@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   node:
-    container_name: backend_container
+    container_name: prod_backend_container
     restart: 'always'
     build: 
       context: .
@@ -25,9 +25,11 @@ services:
       timeout: 10s
       retries: 5
     volumes:
-      - './src:/app/src'
+      - './dist:/app/dist'
+    links:
+      - mysql
   mysql:
-    container_name: mysql_container
+    container_name: prod_mysql_container
     restart: 'always'
     image: mysql:8.0.21
     ports:
@@ -42,5 +44,3 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
       retries: 5
-    # volumes:
-    #   - './mysqlDB:/var/lib/mysql'

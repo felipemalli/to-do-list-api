@@ -10,6 +10,7 @@
     "compose:down:recreate": "docker-compose down --remove-orphans -v",
     "compose:up:dev": "docker-compose -f docker-compose.dev.yml up -d --build",
     "compose:down:dev": "docker-compose -f docker-compose.dev.yml down --remove-orphans",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --ignore-watch node_modules src/server.ts",
     "build": "rimraf dist && tsc",
