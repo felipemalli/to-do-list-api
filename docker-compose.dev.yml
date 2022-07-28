@@ -2,7 +2,7 @@ version: '3.9'
 services:
   node:
     container_name: backend_container
-    restart: 'always'
+    restart: 'always' 
     build: 
       context: .
       target: development

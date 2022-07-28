@@ -17,5 +17,3 @@ ENV PORT ${PORT}
 RUN chown -R 1000:1000 /app
 USER 1000
 CMD ["npm", "start"]
-
-# CMD node /app/dist/index.js
