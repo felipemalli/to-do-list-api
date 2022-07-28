@@ -25,5 +25,5 @@ app.post('/test', async (_req: Request, res: Response, _next: NextFunction) => {
   res.send(userCreated);
 });
 
+
 app.listen(process.env.PORT, () => console.log(`Server running at port ${process.env.PORT}`));
-console.log('teste');
