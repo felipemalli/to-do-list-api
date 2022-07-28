@@ -13,6 +13,7 @@
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node dist/server.js",
     "prestart": "npm run db:reset",
+    "predev": "npm run db:reset",
     "dev": "ts-node-dev --respawn --ignore-watch node_modules src/server.ts",
     "build": "rimraf dist && tsc",
     "test": "jest",
